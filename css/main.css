@@ -56,7 +56,7 @@ a {
 }
 
 .local-nav-links a:not(.product-name) {
-    margin-left: 2em;
+  margin-left: 2em;
 }
 
 .scroll-section {
@@ -80,23 +80,133 @@ a {
 }
 
 .main-message p {
-    font-weight: bold;
-    text-align: center;
-    line-height: 1.2;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.main-message small {
+  display: block;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+}
+
+#scroll-section-2 .main-message {
+  font-size: 3.5rem;
 }
 
 .description {
-    font-size: 1.2rem;
-    color: #888;
+  /* 문단 좌우 폭을 제한하고 싶을 때
+    .scroll-section 으로 섹션 전체의 너비를 제한하는 방법은 좋지 않음
+    다른 섹션에서 비디오나 이미지는 너비를 풀로 사용할 수 있기 때문임
+    */
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  color: #888;
 }
 
 .description strong {
-    float: left;
-    margin-right: 0.2rem;
-    font-size: 3rem;
-    color: rgb(29, 29, 31);
+  float: left;
+  margin-right: 0.2rem;
+  font-size: 3rem;
+  color: rgb(29, 29, 31);
 
-    /* 틈새 css 공부 
+  /* 틈새 css 공부 
     rem vs em
-    rem은 1rem이 14px, em은 부모의 폰트를 1em으로 취급한다 */
+    rem은 1rem이 14px, em은 부모의 폰트를 1em으로 취급한다 
+    따라서 rem은 html 기준 절대적인 값이고
+    em은 부모 요소에 따른 상대적인 값임*/
+}
+
+.desc-message {
+  width: 50%;
+  font-weight: bold;
+}
+
+.pin {
+  width: 1px;
+  height: 100px;
+  background-color: rgb(29, 29, 31);
+}
+
+.mid-message {
+  font-size: 2rem;
+  color: #888;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mid-message strong {
+  color: rgb(29, 29, 31);
+}
+
+.canvas-caption {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  background-color: darkorange;
+}
+
+.sticky-elem {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+/* show-scene은 body에 붙는 id */
+/* 아래처럼 하면 body의 id가 바뀔 때마다 해당 스크롤 섹션만 화면에 노출! */
+#show-scene-0 #scroll-section-0 .sticky-elem,
+#show-scene-1 #scroll-section-1 .sticky-elem,
+#show-scene-2 #scroll-section-2 .sticky-elem,
+#show-scene-3 #scroll-section-3 .sticky-elem {
+    display: block;
+}
+
+@media (min-width: 1024px) {
+  /* width가 1024px 이상일 때 적용되는 css */
+  #scroll-section-0 h1 {
+    font-size: 9vw;
+  }
+
+  .main-message {
+    font-size: 4vw;
+  }
+
+  .description {
+    font-size: 2rem;
+  }
+
+  .description strong {
+    font-size: 6rem;
+  }
+
+  #scroll-section-2 .main-message {
+    font-size: 6vw;
+  }
+  .main-message small {
+    font-size: 1.5vw;
+  }
+  .desc-message {
+    width: 20%;
+  }
+  .mid-message {
+    font-size: 4vw;
+    /* vw는 창 크기를 기준으로 4%임 -> 화면 크기에 따라 유동적으로 변함 */
+  }
+  .canvas-caption {
+    font-size: 2rem;
+  }
 }
