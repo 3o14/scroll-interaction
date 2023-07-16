@@ -76,10 +76,22 @@
   }
 
 
+  function calcValues(values, currentYOffset) {
+
+  }
+
   function playAnimation() {
+    const objs = scenceInfo[currentScence].objs;
+    const values = scenceInfo[currentScence].values;
+    const currentYOffset = yOffset - prevScrollHeight; // 현재 scene에서의 위치 (얼마나 스크롤 됐는지)
+
+    console.log(currentScence, currentYOffset);
+
     switch(currentScence) {
         case 0:
-            console.log("0 paly");
+            let messageA_opacity_start = values.messageA_opacity[0];
+            let messageA_opacity_end = values.messageA_opacity[1];
+            console.log(calcValues(values.messageA_opacity, currentYOffset));
             break;
         
         case 1:
