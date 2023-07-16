@@ -21,11 +21,19 @@ a {
   text-decoration: none;
 }
 .global-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 44px;
   padding: 0 1rem;
 }
 
 .local-nav {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
   height: 52px;
   padding: 0 1rem;
   border-bottom: 1px solid #ddd;
@@ -62,6 +70,7 @@ a {
 .scroll-section {
   /* 화면 높이의 절반만큼 top에 패딩을 줌 */
   padding-top: 50vh;
+  border: 3px solid purple;
 }
 
 #scroll-section-0 h1 {
@@ -165,14 +174,13 @@ a {
   width: 100%;
 }
 
-
 /* show-scene은 body에 붙는 id */
 /* 아래처럼 하면 body의 id가 바뀔 때마다 해당 스크롤 섹션만 화면에 노출! */
 #show-scene-0 #scroll-section-0 .sticky-elem,
 #show-scene-1 #scroll-section-1 .sticky-elem,
 #show-scene-2 #scroll-section-2 .sticky-elem,
 #show-scene-3 #scroll-section-3 .sticky-elem {
-    display: block;
+  display: block;
 }
 
 @media (min-width: 1024px) {
