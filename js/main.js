@@ -77,7 +77,11 @@
 
 
   function calcValues(values, currentYOffset) {
-
+    let rv;
+    // 현쟂 씬(scroll-section)에서 스크롤된 범위를 비율로 구하기
+    let scrollRatio = currentYOffset / scenceInfo[currentScence].scrollHeight;
+    rv = scrollRatio * (values[1] - values[0]) + values[0];
+    return rv;
   }
 
   function playAnimation() {
@@ -85,14 +89,11 @@
     const values = scenceInfo[currentScence].values;
     const currentYOffset = yOffset - prevScrollHeight; // 현재 scene에서의 위치 (얼마나 스크롤 됐는지)
 
-    console.log(currentScence, currentYOffset);
-
     switch(currentScence) {
         case 0:
-            let messageA_opacity_start = values.messageA_opacity[0];
-            let messageA_opacity_end = values.messageA_opacity[1];
-            console.log(calcValues(values.messageA_opacity, currentYOffset));
-            break;
+            let messageA_opacity_in = calcValues(values.messageA_opacity, currentYOffset);
+             objs.messageA.style.opacity = messageA_opacity_in;
+            break; 
         
         case 1:
             console.log("1 paly");
