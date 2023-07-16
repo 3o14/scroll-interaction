@@ -2,6 +2,7 @@
   let yOffset = 0; // window.scrollY 대신 쓸 변수
   let prevScrollHeight = 0; // 현재 스크롤 위치(yOffset)보다 이전에 위치한 스크롤 섹션들의 높이의 합
   let currentScence = 0; // 현재 활성화된 섹션 인덱스
+  let enterNewScene = false; // 새로운 scene이 시작되는 부분의 처음 판단
 
   // 한 scroll-section에 담을 정보 리스트
   const scenceInfo = [
@@ -89,10 +90,12 @@
     const values = scenceInfo[currentScence].values;
     const currentYOffset = yOffset - prevScrollHeight; // 현재 scene에서의 위치 (얼마나 스크롤 됐는지)
 
+    console.log(currentScence);
     switch(currentScence) {
         case 0:
             let messageA_opacity_in = calcValues(values.messageA_opacity, currentYOffset);
              objs.messageA.style.opacity = messageA_opacity_in;
+             console.log(messageA_opacity_in);
             break; 
         
         case 1:
@@ -111,24 +114,31 @@
   }
 
   function scrollLoop() {
+    enterNewScene = false;
     prevScrollHeight = 0;
     for (let i = 0; i < currentScence; i++) {
       prevScrollHeight += scenceInfo[i].scrollHeight;
     }
 
     if (yOffset > prevScrollHeight + scenceInfo[currentScence].scrollHeight) {
+      enterNewScene = true;
       currentScence++;
       console.log(currentScence);
       //   document.body.setAttribute("id", `show-scene-${currentScence}`);
     }
 
     if (yOffset < prevScrollHeight) {
+      enterNewScene = true;
       if (currentScence == 0) return;
       currentScence--;
       //   document.body.setAttribute("id", `show-scene-${currentScence}`);
     }
 
     document.body.setAttribute("id", `show-scene-${currentScence}`);
+
+    if(enterNewScene) return;
+    // scene이 바뀌는 순간이라면 처음 한 번만 playAnimation 함수를 한 번 거름
+    // scene이 바뀌는 순간 마이너스값이 1회 나오는 현상 때문
 
     playAnimation();
   }
