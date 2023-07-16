@@ -14,7 +14,14 @@
         //objs: 화면에 표시할 각 section별 객체 담음
         // container 섹션의 아이디를 담음
         container: document.querySelector("#scroll-section-0"),
+        messageA: document.querySelector("#scroll-section-0 .main-message.a"),
+        messageB: document.querySelector("#scroll-section-0 .main-message.b"),
+        messageC: document.querySelector("#scroll-section-0 .main-message.c"),
+        messageD: document.querySelector("#scroll-section-0 .main-message.d"),
       },
+      values: { // css값 정리
+        messageA_opacity: [0, 1], // messageA의 투명도의 시작값, 종료값
+      }
     },
     {
       // 1
@@ -54,18 +61,40 @@
         i
       ].objs.container.style.height = `${scenceInfo[i].scrollHeight}px`;
     }
-    
+
     let totalScrollHeight = 0;
     // 아무 곳에서 새로고침 했을 때 현재 currentScence 설정
-    for(let i = 0; i < scenceInfo.length; i++) {
-        totalScrollHeight += scenceInfo[i].scrollHeight;
-        if (totalScrollHeight >= yOffset) {
-            currentScence = i;
-            break;
-        }
+    for (let i = 0; i < scenceInfo.length; i++) {
+      totalScrollHeight += scenceInfo[i].scrollHeight;
+      if (totalScrollHeight >= yOffset) {
+        currentScence = i;
+        break;
+      }
     }
 
     document.body.setAttribute("id", `show-scene-${currentScence}`);
+  }
+
+
+  function playAnimation() {
+    switch(currentScence) {
+        case 0:
+            console.log("0 paly");
+            break;
+        
+        case 1:
+            console.log("1 paly");
+            break;
+        
+        case 2:
+            console.log("2 paly");
+            break;
+        
+        case 3:
+            console.log("3 paly");
+            break;
+        
+    }
   }
 
   function scrollLoop() {
@@ -87,6 +116,8 @@
     }
 
     document.body.setAttribute("id", `show-scene-${currentScence}`);
+
+    playAnimation();
   }
 
   window.addEventListener("scroll", () => {
